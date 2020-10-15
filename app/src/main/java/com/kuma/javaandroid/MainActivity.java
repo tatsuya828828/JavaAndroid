@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,14 +17,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView hello = findViewById(R.id.textview_hello);
-        String text = hello.getText().toString();
-        Log.d("MainActivity", text);
-        String text2 = "Hello, Android";
-        hello.setText(text2);
-        // Color.parseColorに文字列やカラーコードを渡すことで数値に変換し
-        // setTextColorに渡すことができるようになる
-        hello.setTextColor(Color.parseColor("blue"));
-        hello.setTypeface(Typeface.DEFAULT_BOLD);
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("MainActivity", "Clicked!");
+                EditText editText = findViewById(R.id.editText);
+                String text = editText.getText().toString();
+                Log.d("MainActivity", text);
+                TextView textView = findViewById(R.id.textView);
+                textView.setText(text);
+            }
+        });
     }
 }
